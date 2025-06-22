@@ -1,5 +1,7 @@
 package org.example;
 
+import java.util.Comparator;
+
 /**
  * Интерфейс для списка.
  *
@@ -45,14 +47,28 @@ public interface MyList<T> {
     /**
      * Сортирует список по естественному порядку.
      */
-    void sort();
+    void sort(Comparator<? super T> comparator);
 
     /**
-     * Возвращает размер списка.
+     * Возвращает количество элементов в списке.
      *
-     * @return количество элементов
+     * @return количество элементов в списке
      */
     int size();
+
+    /**
+     * Быстрая сортировка (QuickSort) списка.
+     */
+    default void quickSort() {
+        sort(null);
+    }
+
+    /**
+     * Быстрая сортировка (QuickSort) списка с использованием указанного компаратора.
+     */
+    default void quickSort(Comparator<? super T> comparator) {
+        sort(comparator);
+    }
 
     /**
      * Преобразует список в строку.

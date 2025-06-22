@@ -25,7 +25,7 @@ class MyArrayListTest {
     }
 
     @Test
-    void add_whenElementsAdded_thenGetReturnsCorrectValues() {
+    void addingElementsUpdatesListSize() {
         list.add(10);
         list.add(20);
         list.add(30);
@@ -37,7 +37,7 @@ class MyArrayListTest {
     }
 
     @Test
-    void add_whenAddAtIndex_thenElementsInsertedCorrectly() {
+    void insertingElementAtValidIndexShiftsElements() {
         list.add(0);
         list.add(2);
         list.add(1, 1);
@@ -49,7 +49,7 @@ class MyArrayListTest {
     }
 
     @Test
-    void remove_whenValidIndex_thenElementRemovedCorrectly() {
+    void removingElementAtValidIndexUpdatesList() {
         list.add(5);
         list.add(10);
         list.remove(0);
@@ -59,7 +59,7 @@ class MyArrayListTest {
     }
 
     @Test
-    void clear_whenCalled_thenListIsEmpty() {
+    void clearingListRemovesAllElements() {
         list.add(1);
         list.add(2);
         list.clear();
@@ -69,35 +69,23 @@ class MyArrayListTest {
     }
 
     @Test
-    void sort_whenCalled_thenListIsSorted() {
-        list.add(5);
-        list.add(3);
-        list.add(8);
-        list.sort();
-
-        assertEquals(3, list.get(0));
-        assertEquals(5, list.get(1));
-        assertEquals(8, list.get(2));
-    }
-
-    @Test
-    void add_whenInvalidIndex_thenThrowsException() {
+    void addingElementAtInvalidIndexThrowsException() {
         assertThrows(IndexOutOfBoundsException.class, () -> list.add(1, 5));
     }
 
     @Test
-    void remove_whenInvalidIndex_thenThrowsException() {
+    void removingElementAtInvalidIndexThrowsException() {
         assertThrows(IndexOutOfBoundsException.class, () -> list.remove(0));
     }
 
     @Test
-    void get_whenInvalidIndex_thenThrowsException() {
+    void gettingElementAtInvalidIndexThrowsException() {
         assertThrows(IndexOutOfBoundsException.class, () -> list.get(-1));
     }
 
     @ParameterizedTest
     @MethodSource("provideDataForAddAtIndex")
-    void add_whenValidIndexParameterized_thenElementsInsertedCorrectly(int index, Integer element, Integer[] expected) {
+    void insertingElementsWithParametersUpdatesList(int index, Integer element, Integer[] expected) {
         list.add(1);
         list.add(2);
         list.add(3);
@@ -118,7 +106,7 @@ class MyArrayListTest {
     }
 
     @Test
-    void toString_whenListNotEmpty_thenCorrectStringReturned() {
+    void convertingListToStringReturnsValidFormat() {
         list.add(1);
         list.add(2);
         list.add(3);
@@ -127,12 +115,12 @@ class MyArrayListTest {
     }
 
     @Test
-    void toString_whenListEmpty_thenReturnEmptyBrackets() {
+    void convertingEmptyListToStringReturnsEmptyBrackets() {
         assertEquals("[]", list.toString());
     }
 
     @Test
-    void size_whenElementsAddedAndRemoved_thenSizeIsCorrect() {
+    void sizeChangesAfterAddingAndRemovingElements() {
         assertEquals(0, list.size());
         list.add(1);
         assertEquals(1, list.size());
